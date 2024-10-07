@@ -1,20 +1,32 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { StyledEngineProvider } from "@mui/material";
 import { Provider } from "react-redux";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 import { router } from "@/../configs/routes";
-import store from "@/storage/store";
 
 import "@/global.less";
+import { AuthProvider } from "@/wrappers/Auth/Auth";
+import { ConfigProvider } from "antd/lib";
+
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <StyledEngineProvider injectFirst>
-        <RouterProvider router={router} />
-      </StyledEngineProvider>
-    </React.StrictMode>
-  </Provider>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider
+        theme={{
+          token: {
+            fontFamily: "Nunito",
+          },
+        }}
+      >
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </ConfigProvider>
+    </QueryClientProvider>
+  </React.StrictMode>
 );

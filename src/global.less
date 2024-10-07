@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap');
 
 :root {
-  font-family: Nunito, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Nunito, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
 }
 
 @layer base {
@@ -43,3 +43,109 @@
   }
 }
 
+@layer {
+  .custom-antd-form-small {
+    @apply w-full font-sans;
+
+    input {
+      @apply font-sans !text-body-3-regular;
+    }
+
+    .ant-row {
+      @apply gap-1 flex;
+      .ant-form-item-label {
+        @apply lg:text-right font-sans text-sky-300 text-body-2-regular p-0;
+        label {
+          @apply ~"h-[38px] text-sky-300";
+          &:after {
+            @apply font-sans visible m-0 text-sky-500;
+            font-family: SimSun, sans;
+            content: ':';
+          }
+        }
+      }
+    }
+
+    .ant-form-item {
+      @apply mb-0 pb-4 !font-sans;
+
+      .ant-form-item-row {
+        .ant-form-item-label {
+          @apply font-sans !p-0;
+
+          .ant-form-item-required {
+            &:before {
+              @apply font-sans text-body-1-medium visible m-0 pr-1;
+              font-family: SimSun, sans !important;
+              content: '*';
+            }
+
+            &:after {
+            }
+          }
+          > label {
+            @apply !text-body-3-medium;
+            &:before {
+              @apply font-sans text-body-1-medium invisible m-0 pr-1;
+              font-family: SimSun, sans;
+              content: '*';
+            }
+          }
+        }
+
+        .ant-form-item-control {
+          .ant-form-item-control-input-content {
+            @apply text-body-2-regular;
+
+            .ant-input {
+              @apply ~"rounded-[4px]  !bg-transparent align-baseline !font-sans text-body-2-semibold";
+
+              &:focus {
+                @apply  border-sky-500;
+              }
+
+              &:focus-within {
+                @apply  border-sky-500;
+              }
+
+              &:hover {
+                @apply  border-sky-700;
+              }
+            }
+            .ant-input-affix-wrapper-lg {
+              @apply ~"rounded-[4px] py-0";
+
+              &:focus-within {
+                @apply border-sky-500;
+              }
+
+              &:focus {
+                @apply border-sky-500;
+              }
+
+              &:hover {
+                @apply border-sky-700;
+              }
+            }
+
+            .ant-picker {
+              @apply w-full;
+              &:hover,
+              &:focus-within,
+              &:focus {
+                @apply border-sky-500;
+              }
+
+              .ant-picker-active-bar {
+                @apply border-sky-200;
+              }
+            }
+            .ant-picker-focused {
+              @apply border-sky-800;
+            }
+          }
+        }
+      }
+    }
+  }
+}

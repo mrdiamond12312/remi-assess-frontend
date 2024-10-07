@@ -1,6 +1,6 @@
 import { lazyRouteImport } from "@/utils/lazyRouteImport";
 import { createBrowserRouter } from "react-router-dom";
-import { path } from "@/constants/path";
+import * as path from "@/constants/path";
 
 export const router = createBrowserRouter([
   {
@@ -11,10 +11,14 @@ export const router = createBrowserRouter([
       //   path: path.HOMEPAGE,
       //   element: <Navigate replace to={(path)} />,
       // },
-      // {
-      //   path: (path),
-      //   lazy: () => lazyRouteImport("pages/TermsOfUse"),
-      // },
+      {
+        path: path.LOGIN,
+        lazy: () => lazyRouteImport("pages/auth/login"),
+      },
+      {
+        path: path.SIGN_UP,
+        lazy: () => lazyRouteImport("pages/auth/sign-up"),
+      },
     ],
   },
 

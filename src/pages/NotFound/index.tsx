@@ -1,7 +1,7 @@
 import React from "react";
 import "@/global.less";
-import { path } from "@/constants/path";
-import { Button } from "@mui/material";
+import * as path from "@/constants/path";
+import { Button } from "antd/lib";
 import { Link } from "react-router-dom";
 
 const NotFound: React.FC = () => {
@@ -18,10 +18,7 @@ const NotFound: React.FC = () => {
         The page that you're looking for is not here, changed or removed!
       </span>
       <Link to={path.HOMEPAGE}>
-        <Button
-          variant="contained"
-          className="mix-blend-difference !bg-neutral-3 !text-neutral-10 !text-body-1-semibold !h-12"
-        >
+        <Button className="mix-blend-difference !bg-neutral-3 !text-neutral-10 !text-body-1-semibold !h-12">
           Go to Homepage
         </Button>
       </Link>
