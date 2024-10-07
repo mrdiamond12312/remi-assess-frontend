@@ -159,4 +159,28 @@
       }
     }
   }
+
+  .custom-floating-button {
+    @apply text-blue-500 gap-0 border-blue-500 p-4 h-14 min-w-14;
+    @apply transition-all;
+    .ant-btn-icon {
+      @apply text-body-1-medium;
+    }
+    p {
+      @apply w-0 opacity-0;
+      font-size: 0px;
+    }
+
+    &:hover {
+      @apply transition-all gap-2;
+      transition-duration: 1s;
+      
+      p {
+        @apply text-body-2-medium w-full block opacity-100;
+        
+        @apply transition-all ;
+        transition-duration: 1s;
+      }
+    }
+  }
 }

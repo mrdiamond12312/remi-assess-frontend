@@ -15,12 +15,12 @@ const NavBar: React.FC = () => {
           <UserInfo />
         </div>
       </nav>
-      <div className="min-h-[calc(100vh-160px)] h-fit max-w-7xl w-11/12 mx-auto my-4">
+      <div className="min-h-[calc(100vh-112px)] h-fit max-w-7xl w-11/12 mx-auto my-4 relative">
         <Outlet />
       </div>
-      <div className="px-12 bg-neutral-3 h-12 w-full text-white flex flex-row items-center justify-center">
+      {/* <div className="px-12 bg-neutral-3 h-12 w-full text-white flex flex-row items-center justify-center">
         <span className="text-heading-5">FOOTER</span>
-      </div>
+      </div> */}
     </div>
   );
 };

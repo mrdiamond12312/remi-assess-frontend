@@ -1,19 +1,17 @@
-import * as Path from "@/constants/path";
 import API_ENDPOINTS from "@/services/auth/api-path";
 import {
   getCurrentAuthInfo,
   login,
   register,
 } from "@/services/auth/api-services";
-import history from "@/services/history/history";
 import {
   getStorageItem,
   removeStorageItem,
   setStorageItem,
 } from "@/utils/local-storage";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { TLoginFormFields } from "@/pages/user/login/hooks/useLoginForm";
 import { TRegisterFormFields } from "@/pages/auth/sign-up/hooks/useRegisterForm";
+import { TLoginFormFields } from "@/pages/auth/login/hooks/useLoginForm";
 
 export const useServiceLogin = () => {
   return useMutation<API.TAuthResponse, TMeta, TLoginFormFields>({
@@ -38,15 +36,6 @@ export const useServiceRegister = () => {
 
 export const handleLogout = () => {
   removeStorageItem("accessToken");
-
-  if (window.location.pathname !== Path.LOGIN) {
-    history.replace(
-      {
-        pathname: Path.LOGIN,
-      },
-      { from: history.location.pathname }
-    );
-  } else history.push(Path.LOGIN);
 };
 
 export const fetchAuthInfo = async (): Promise<

@@ -8,7 +8,6 @@ export interface IUserQuery {
   data: API.TAuthProfile | undefined;
   isLoading: boolean;
   error: Error | null;
-  handleUserLogout: () => void;
 }
 
 export interface IAuthProvidersProps {
@@ -20,25 +19,10 @@ export const AuthContext = React.createContext<IUserQuery | undefined>(
 );
 
 export const AuthProvider: React.FC<IAuthProvidersProps> = ({ children }) => {
-  const { data, isLoading, error, refetch } = useAuthInfo();
-
-  const handleUserLogout = () => {
-    removeStorageItem("accessToken");
-
-    refetch();
-    console.log(data);
-    if (window.location.pathname !== path.LOGIN) {
-      history.replace(
-        {
-          pathname: path.LOGIN,
-        },
-        { from: history.location.pathname }
-      );
-    } else history.push(path.LOGIN);
-  };
+  const { data, isLoading, error } = useAuthInfo();
 
   return (
-    <AuthContext.Provider value={{ data, isLoading, error, handleUserLogout }}>
+    <AuthContext.Provider value={{ data, isLoading, error }}>
       {children}
     </AuthContext.Provider>
   );

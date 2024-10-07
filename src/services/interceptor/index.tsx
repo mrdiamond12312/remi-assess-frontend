@@ -3,7 +3,7 @@ import { extend } from "umi-request";
 
 import * as Path from "@/constants/path";
 import { removeStorageItem } from "@/utils/local-storage";
-import history from "@/services/history/history";
+import { notification } from "antd";
 
 class HttpError extends Error {
   response: Response;
@@ -14,8 +14,6 @@ class HttpError extends Error {
     this.data = data;
   }
 }
-
-
 
 const errorHandler = async (err: ResponseError) => {
   const { statusCode, error, message }: TMeta = await err.response.json();
@@ -34,7 +32,14 @@ const errorHandler = async (err: ResponseError) => {
     // Check token expired
     if (statusCode === 401 && window.location.pathname !== Path.HOMEPAGE) {
       removeStorageItem("accessToken");
-      return history.push(Path.HOMEPAGE);
+      notification.error({
+        description: "Please ReLogin to continue!",
+        message: "401 - Unauthorized",
+        duration: 1,
+        onClose: () => {
+          window.location.href = Path.LOGIN;
+        },
+      });
     }
     return Promise.reject({ statusCode, error, message });
   }

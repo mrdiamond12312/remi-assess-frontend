@@ -18,9 +18,14 @@ export const router = createBrowserRouter([
         element: <Navigate to="videos-feed" replace />,
       },
       {
-        index: true,
         path: "videos-feed",
         lazy: () => lazyRouteImport("pages/videos"),
+        children: [
+          {
+            path: "share",
+            lazy: () => lazyRouteImport("pages/share-video"),
+          },
+        ]
       },
       {
         path: "auth",

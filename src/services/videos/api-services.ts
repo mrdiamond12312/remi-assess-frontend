@@ -1,5 +1,6 @@
 import API_ENDPOINTS from "@/services/videos/api-path";
 import request from "@/services/interceptor";
+import { TVideoFields } from "@/pages/share-video/hooks/useVideoResolver";
 
 export const shareVideo = async (body: TVideoFields) => {
   return request<API.TVideoRecord>(API_ENDPOINTS.SHARE, {
