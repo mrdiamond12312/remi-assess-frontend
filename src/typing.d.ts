@@ -38,6 +38,12 @@ declare interface ILinkPreviousRoute {
   from: string;
 }
 
+declare interface IPaginationResponse<T> {
+  data: T[];
+  meta: IPaginationMeta;
+  extra?: any;
+}
+
 declare type TPropsFormInput = {
   control?: Control;
   name: string;

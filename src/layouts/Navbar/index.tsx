@@ -1,5 +1,5 @@
 import * as path from "@/constants/path";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet, redirect } from "react-router-dom";
 
 import React from "react";
 import UserInfo from "@/components/UserInfo";

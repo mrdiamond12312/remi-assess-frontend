@@ -1,33 +1,46 @@
 import { lazyRouteImport } from "@/utils/lazyRouteImport";
-import { createBrowserRouter } from "react-router-dom";
-import * as path from "@/constants/path";
+import { createBrowserRouter, Navigate } from "react-router-dom";
+import ProtectAuthRoute from "@/wrappers/ProtectAuthRoute";
 
 export const router = createBrowserRouter([
   {
-    path: path.HOMEPAGE,
+    path: "",
     lazy: () => lazyRouteImport("layouts/Navbar"),
+
     children: [
       // {
       //   path: path.HOMEPAGE,
       //   element: <Navigate replace to={(path)} />,
       // },
       {
-        path: path.LOGIN,
-        lazy: () => lazyRouteImport("pages/auth/login"),
+        index: true,
+        path: "",
+        element: <Navigate to="videos-feed" replace />,
       },
       {
-        path: path.SIGN_UP,
-        lazy: () => lazyRouteImport("pages/auth/sign-up"),
+        index: true,
+        path: "videos-feed",
+        lazy: () => lazyRouteImport("pages/videos"),
+      },
+      {
+        path: "auth",
+        element: <ProtectAuthRoute />,
+        children: [
+          {
+            path: "login",
+            lazy: () => lazyRouteImport("pages/auth/login"),
+          },
+          {
+            path: "sign-up",
+            lazy: () => lazyRouteImport("pages/auth/sign-up"),
+          },
+        ],
       },
     ],
   },
 
   {
     path: "*",
-    lazy: () => lazyRouteImport("pages/NotFound"),
-  },
-  {
-    path: path.PAGE_NOT_FOUND,
     lazy: () => lazyRouteImport("pages/NotFound"),
   },
 ]);

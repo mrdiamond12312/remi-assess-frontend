@@ -35,6 +35,12 @@
   ul, ol {
     list-style: revert;
   }
+
+  a {
+    &:hover {
+      @apply text-inherit;
+    }
+  }
 }
 
 @layer utilities {
@@ -54,9 +60,10 @@
     .ant-row {
       @apply gap-1 flex;
       .ant-form-item-label {
-        @apply lg:text-right font-sans text-sky-300 text-body-2-regular p-0;
+        @apply lg:text-right font-sans text-body-2-regular p-0;
+        
         label {
-          @apply ~"h-[38px] text-sky-300";
+          @apply ~"h-[38px] text-sky-500";
           &:after {
             @apply font-sans visible m-0 text-sky-500;
             font-family: SimSun, sans;
@@ -126,6 +133,10 @@
               &:hover {
                 @apply border-sky-700;
               }
+            }
+
+            .ant-input-password {
+              @apply ~"h-[38px]";
             }
 
             .ant-picker {

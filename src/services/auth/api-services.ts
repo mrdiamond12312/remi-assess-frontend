@@ -1,5 +1,5 @@
-import { TLoginFormFields } from '@/pages/user/login/hooks/useLoginForm';
-import { TRegisterFormFields } from '@/pages/user/sign-up/hooks/useRegisterForm';
+import { TLoginFormFields } from '@/pages/auth/login/hooks/useLoginForm';
+import { TRegisterFormFields } from '@/pages/auth/sign-up/hooks/useRegisterForm';
 import API_ENDPOINTS from '@/services/auth/api-path';
 import request from '@/services/interceptor';
 

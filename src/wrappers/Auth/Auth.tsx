@@ -36,6 +36,7 @@ export const AuthProvider: React.FC<IAuthProvidersProps> = ({ children }) => {
       );
     } else history.push(path.LOGIN);
   };
+
   return (
     <AuthContext.Provider value={{ data, isLoading, error, handleUserLogout }}>
       {children}

@@ -59,7 +59,7 @@ const RegisterForm: React.FC<TRegisterForm> = ({
           size={size}
         />
       </Item>
-      <Item label={"Password Confirmation"} required>
+      <Item label={"Reenter Password"} required>
         <HiddenInput
           placeholder="******"
           placement="top"
