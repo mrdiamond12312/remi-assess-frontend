@@ -1,4 +1,4 @@
-import { Button, Flex, notification, Space, Spin, Typography } from "antd/lib";
+import { Button, Flex, notification, Spin, Typography } from "antd/lib";
 import React from "react";
 import { handleLogout } from "@/services/auth/services";
 import { Link } from "react-router-dom";

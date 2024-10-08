@@ -40,7 +40,8 @@
     ".stylelintrc.js",
     ".prettierrc.js",
     "jest.config.js",
-    "mock/*"
+    "mock/*", 
+    "cypress/**/*"
   ],
   "exclude": ["node_modules", "build", "dist", "scripts", "webpack", "jest"],
   "references": [{ "path": "./tsconfig.node.json" }],

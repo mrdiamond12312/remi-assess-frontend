@@ -1,8 +1,8 @@
 import VideoCard, { IVideoProps } from "@/components/VideoCard";
 import { expect } from "@storybook/jest";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/testing-library";
-import { Flex, Form } from "antd/lib";
+import { within } from "@storybook/testing-library";
+import { Flex } from "antd/lib";
 
 const args = {
   title: 'Caesar EP - "pinKing" | Zenless Zone Zero',

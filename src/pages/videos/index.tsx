@@ -19,7 +19,6 @@ const VideosFeed: React.FC = () => {
   useEffect(() => {
     if (hasNextPage && inView && !isFetchingNextPage) fetchNextPage();
   }, [inView, isFetchingNextPage]);
-  console.log(data, isFetchingNextPage, inView);
 
   return (
     <Flex className="flex-col gap-2 max-w-5xl m-auto">
