@@ -1,8 +1,12 @@
 declare namespace TEST {
     interface IDBSanitize {
-      productName?: string;
-      lessorShopName?: string;
+      ytbUrl?: string;
       userName?: string;
+    }
+    interface IVideoInfo {
+      ytbUrl: string;
+      willNavigate: boolean;
+      login: boolean;
     }
     interface IRegisterInfo {
       userName?: string;
@@ -12,7 +16,6 @@ declare namespace TEST {
       email?: string;
       willNavigate: boolean;
     }
-  
     interface IProfileInfo extends IRegisterInfo {
       dob?: string;
       address?: string;

@@ -58,7 +58,7 @@ const LoginForm: React.FC<TLoginForm> = ({
         className="w-full text-body-2-semibold bg-blue-500"
         loading={isLoading}
       >
-        {"Log In"}
+        {"Log In!"}
       </Button>
     </Form>
   );

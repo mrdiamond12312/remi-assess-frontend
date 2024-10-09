@@ -30,7 +30,11 @@ const errorHandler = async (err: ResponseError) => {
     });
   } else {
     // Check token expired
-    if (statusCode === 401 && window.location.pathname !== Path.HOMEPAGE) {
+    if (
+      statusCode === 401 &&
+      (window.location.pathname !== Path.HOMEPAGE &&
+        window.location.pathname !== Path.LOGIN)
+    ) {
       removeStorageItem("accessToken");
       notification.error({
         description: "Please ReLogin to continue!",

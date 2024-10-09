@@ -35,7 +35,7 @@ export const useLoginForm = () => {
     mutate(body, {
       onSuccess: async () => {
         notification.success({
-          message: "Register Successfully!",
+          message: "Log in Successfully!",
           duration: 0.5,
           onClose: () => {
             window.location.href = state?.from ?? HOMEPAGE;
@@ -48,9 +48,9 @@ export const useLoginForm = () => {
           notification.error({
             message: "Server down",
           });
-        } else if (error.statusCode === 400)
+        } else if (error.statusCode === 401)
           notification.error({
-            message: "Credentials Existed!",
+            message: "Wrong Credentials",
           });
       },
     });

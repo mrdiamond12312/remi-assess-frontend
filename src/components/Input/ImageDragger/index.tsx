@@ -1,14 +1,13 @@
-import { FileImageOutlined } from '@ant-design/icons';
-import { useIntl } from '@umijs/max';
-import { UploadListProps } from 'antd/es/upload';
-import Dragger from 'antd/es/upload/Dragger';
-import { Flex, Image, Row } from 'antd/lib';
-import React, { Fragment } from 'react';
-import { Control, Controller, FieldValues } from 'react-hook-form';
+import { FileImageOutlined } from "@ant-design/icons";
+import { UploadListProps } from "antd/es/upload";
+import Dragger from "antd/es/upload/Dragger";
+import { Flex, Image, Row } from "antd/lib";
+import React, { Fragment } from "react";
+import { Control, Controller, FieldValues } from "react-hook-form";
 
-import { useUploadImage } from './hooks/useUploadImage';
+import { useUploadImage } from "./hooks/useUploadImage";
 
-import ValidateError from '@/components/Input/ValidateError';
+import ValidateError from "@/components/Input/ValidateError";
 
 export type TPropsDragger = {
   control: Control<FieldValues> | any;
@@ -18,14 +17,9 @@ export type TPropsDragger = {
   readOnly?: boolean;
 };
 
-export const ImageDragger: React.FC<TPropsDragger & Partial<UploadListProps>> = ({
-  control,
-  name,
-  maxCount,
-  readOnly,
-  ...settings
-}) => {
-  const intl = useIntl();
+export const ImageDragger: React.FC<
+  TPropsDragger & Partial<UploadListProps>
+> = ({ control, name, maxCount, readOnly, ...settings }) => {
   const { beforeUpload, uploadImage } = useUploadImage(intl);
 
   return (
@@ -35,8 +29,10 @@ export const ImageDragger: React.FC<TPropsDragger & Partial<UploadListProps>> = 
       render={({ field, fieldState: { error } }) => {
         return readOnly ? (
           <Row>
-            {!field.value?.[0] || field.value[0].url === '' ? (
-              <Flex className="pl-3 h-8 items-end font-sans text-body-2-semibold">NaN</Flex>
+            {!field.value?.[0] || field.value[0].url === "" ? (
+              <Flex className="pl-3 h-8 items-end font-sans text-body-2-semibold">
+                NaN
+              </Flex>
             ) : (
               <Image src={field.value[0].url} />
             )}
@@ -63,10 +59,7 @@ export const ImageDragger: React.FC<TPropsDragger & Partial<UploadListProps>> = 
                   </p>
                   <div>
                     <p className="text-body-2-regular text-teal-7">
-                      {intl.formatMessage({
-                        id: 'pages.component.dragger.title',
-                        defaultMessage: 'Click or Drop the image here',
-                      })}
+                      Click or Drop the image here
                     </p>
                   </div>
                 </div>

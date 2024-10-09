@@ -7,12 +7,14 @@ import UserInfo from "@/components/UserInfo";
 const NavBar: React.FC = () => {
   return (
     <div className="flex flex-col min-h-[100vh]">
-      <nav className="px-12 bg-white h-20 flex flex-row  justify-center sticky top-0 left-0 z-10">
-        <div className="max-w-7xl w-full h-20 flex flex-row justify-between items-center border-b">
-          <Link to={path.HOMEPAGE} className="text-heading-4">
+      <nav className="bg-white h-20 flex flex-row  justify-center sticky top-0 left-0 z-10">
+        <div className="px-4 max-w-7xl w-full h-20 flex flex-row justify-between items-center border-b">
+          <Link to={path.HOMEPAGE} className="text-heading-4 hidden md:flex">
             Funny Movies
           </Link>
-          <UserInfo />
+          <div className="ml-auto">
+            <UserInfo />
+          </div>
         </div>
       </nav>
       <div className="min-h-[calc(100vh-112px)] h-fit max-w-7xl w-11/12 mx-auto my-4 relative">

@@ -36,42 +36,74 @@
 //   }
 // }
 
-import 'cypress-network-idle';
+import "cypress-network-idle";
 // export const fn = () => {};
 
 beforeEach(() => {
-
   cy.waitForNetworkIdlePrepare({
-    method: 'POST',
-    pattern: Cypress.env('VITE_API') + '/auth/register',
-    alias: 'register',
+    method: "POST",
+    pattern: Cypress.env("VITE_API") + "/auth/register",
+    alias: "register",
   });
   cy.waitForNetworkIdlePrepare({
-    method: 'POST',
-    pattern: Cypress.env('VITE_API') + '/auth/login',
-    alias: 'login',
+    method: "POST",
+    pattern: Cypress.env("VITE_API") + "/auth/login",
+    alias: "login",
   });
+  cy.waitForNetworkIdlePrepare({
+    method: "POST",
+    pattern: Cypress.env("VITE_API") + "/video/share",
+    alias: "shareVideo",
+  });
+  cy.waitForNetworkIdlePrepare({
+    method: "GET",
+    pattern: Cypress.env("VITE_API") + "/video",
+    alias: "getVideos",
+  });
+});
 
-  
+before(() => {
+  cy.waitForNetworkIdlePrepare({
+    method: "POST",
+    pattern: Cypress.env("VITE_API") + "/auth/register",
+    alias: "register",
+  });
+  cy.waitForNetworkIdlePrepare({
+    method: "POST",
+    pattern: Cypress.env("VITE_API") + "/auth/login",
+    alias: "login",
+  });
 });
 declare global {
   namespace Cypress {
     interface Chainable {
-      adminLogin(loginInfo: TEST.IRegisterInfo): Chainable<void>;
+      // Reusable Actions
+      // # Authentication
       login(loginInfo: TEST.IRegisterInfo): Chainable<void>;
       register(registerInfo: TEST.IRegisterInfo): Chainable<void>;
       logout(fullName?: string): Chainable<void>;
 
-      drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
-      dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
+      // # Video Page
+      shareVideo(
+        videoInfo: TEST.IVideoInfo,
+        userInfo: TEST.IRegisterInfo
+      ): Chainable<void>;
 
-      printLog(msg: any): Chainable<Element>;
-
+      // Common Components Actions
       getInputByLabel(label: string): Chainable<JQuery<HTMLInputElement>>;
-      getInputByPlaceholder(placeholder: string): Chainable<JQuery<HTMLInputElement | HTMLElement>>;
+      getInputByPlaceholder(
+        placeholder: string
+      ): Chainable<JQuery<HTMLInputElement | HTMLElement>>;
       getButton(label: string): Chainable<JQuery<HTMLButtonElement>>;
 
+      // Database Manipulation (only use on dev-server for CI or local)
+      sanitizeDatabase(payload: TEST.IDBSanitize): Chainable<void>;
+
       // visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
+      // drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
+      // dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>;
+
+      // printLog(msg: any): Chainable<Element>;
     }
   }
 }
@@ -80,20 +112,33 @@ declare global {
  * Ant Design Form components
  */
 
-Cypress.Commands.add('getInputByLabel', (label: string) => {
-  return cy.contains('label', label).parent().parent().find('input, textarea');
+Cypress.Commands.add("getInputByLabel", (label: string) => {
+  return cy.contains("label", label).parent().parent().find("input, textarea");
 });
 
-Cypress.Commands.add('getInputByPlaceholder', (placeholder: string) => {
+Cypress.Commands.add("getInputByPlaceholder", (placeholder: string) => {
   return cy.get(`input[placeholder*="${placeholder}"]`);
 });
 /**
  * Ant Design Button
  */
-Cypress.Commands.add('getButton', (text: string) => {
-  return cy.get('button:visible').contains(text).filter(':visible');
+Cypress.Commands.add("getButton", (text: string) => {
+  return cy.get("button").contains(text);
 });
 
 /**
  * SANITIZE DATABASE
  */
+
+Cypress.Commands.add("sanitizeDatabase", (payload: TEST.IDBSanitize) => {
+  if (payload.ytbUrl)
+    cy.task(
+      "queryDb",
+      `DELETE FROM videos WHERE youtube_url LIKE '${payload.ytbUrl}'`
+    );
+  if (payload.userName)
+    cy.task(
+      "queryDb",
+      `DELETE FROM users WHERE user_name LIKE '${payload.userName}'`
+    );
+});

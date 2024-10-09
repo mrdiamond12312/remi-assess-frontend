@@ -48,7 +48,7 @@ const UserInfo: React.FC = () => {
           size="large"
           type="primary"
         >
-          Log In!
+          Log In
         </Button>
       </Link>
       <Link to={path.SIGN_UP}>

@@ -88,7 +88,7 @@ const RegisterForm: React.FC<TRegisterForm> = ({
         className="w-full text-body-2-semibold bg-blue-500"
         loading={isLoading}
       >
-        {"Sign Up"}
+        Sign Up!
       </Button>
     </Form>
   );
