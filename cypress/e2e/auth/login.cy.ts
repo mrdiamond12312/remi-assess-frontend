@@ -13,7 +13,7 @@ describe("login", () => {
     });
     cy.register(userInfo);
     cy.waitForNetworkIdle("@register", 1000);
-    cy.logout(userInfo.fullName);
+    cy.logout();
   });
   beforeEach(() => {
     cy.visit("/");
@@ -32,7 +32,7 @@ describe("login", () => {
     cy.waitForNetworkIdle("@login", 1000);
 
     cy.location("pathname").should("not.eq", "/auth/login");
-    cy.logout(userInfo.fullName);
+    cy.logout();
   });
 
   it("should not log in", () => {

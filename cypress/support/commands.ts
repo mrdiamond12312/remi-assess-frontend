@@ -81,7 +81,7 @@ declare global {
       // # Authentication
       login(loginInfo: TEST.IRegisterInfo): Chainable<void>;
       register(registerInfo: TEST.IRegisterInfo): Chainable<void>;
-      logout(fullName?: string): Chainable<void>;
+      logout(): Chainable<void>;
 
       // # Video Page
       shareVideo(

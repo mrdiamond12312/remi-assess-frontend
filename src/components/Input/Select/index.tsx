@@ -1,8 +1,8 @@
-import { Select as AntdSelect, SelectProps } from 'antd/lib';
-import { Fragment } from 'react/jsx-runtime';
-import { Controller } from 'react-hook-form';
+import { Select as AntdSelect, SelectProps } from "antd/lib";
+import { Fragment } from "react";
+import { Controller } from "react-hook-form";
 
-import ValidateError from '@/components/Input/ValidateError';
+import ValidateError from "@/components/Input/ValidateError";
 
 export type TSelect = {
   control: any;

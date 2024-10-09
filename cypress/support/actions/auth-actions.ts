@@ -35,6 +35,6 @@ Cypress.Commands.add("login", (loginInfo: TEST.IRegisterInfo) => {
   cy.getButton("Log In!").click();
 });
 
-Cypress.Commands.add("logout", (fullName?: string) => {
+Cypress.Commands.add("logout", () => {
   cy.getButton("Log out!").click();
 });

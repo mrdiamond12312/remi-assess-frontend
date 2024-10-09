@@ -26,7 +26,7 @@ describe("share video", () => {
     });
     cy.register(userInfo);
     cy.waitForNetworkIdle("@register", 1000);
-    cy.logout(userInfo.fullName);
+    cy.logout();
   });
 
   beforeEach(() => {

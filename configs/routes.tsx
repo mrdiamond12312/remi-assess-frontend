@@ -1,17 +1,22 @@
-import { lazyRouteImport } from "@/utils/lazyRouteImport";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import ProtectAuthRoute from "@/wrappers/ProtectAuthRoute";
+import React from "react";
+import NavBar from "@/layouts/Navbar/index";
+
+const LogIn = React.lazy(() => import("@/pages/auth/login"));
+const SignUp = React.lazy(() => import("@/pages/auth/sign-up"));
+
+const VideosFeed = React.lazy(() => import("@/pages/videos"));
+const ShareVideoModal = React.lazy(() => import("@/pages/share-video"));
+
+const NotFound = React.lazy(() => import("@/pages/NotFound"));
 
 export const router = createBrowserRouter([
   {
     path: "",
-    lazy: () => lazyRouteImport("layouts/Navbar"),
+    element: <NavBar />,
 
     children: [
-      // {
-      //   path: path.HOMEPAGE,
-      //   element: <Navigate replace to={(path)} />,
-      // },
       {
         index: true,
         path: "",
@@ -19,13 +24,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "videos-feed",
-        lazy: () => lazyRouteImport("pages/videos"),
+        element: <VideosFeed />,
         children: [
           {
             path: "share",
-            lazy: () => lazyRouteImport("pages/share-video"),
+            element: <ShareVideoModal />,
           },
-        ]
+        ],
       },
       {
         path: "auth",
@@ -33,11 +38,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "login",
-            lazy: () => lazyRouteImport("pages/auth/login"),
+            element: <LogIn />,
           },
           {
             path: "sign-up",
-            lazy: () => lazyRouteImport("pages/auth/sign-up"),
+            element: <SignUp />,
           },
         ],
       },
@@ -46,6 +51,6 @@ export const router = createBrowserRouter([
 
   {
     path: "*",
-    lazy: () => lazyRouteImport("pages/NotFound"),
+    element: <NotFound />,
   },
 ]);

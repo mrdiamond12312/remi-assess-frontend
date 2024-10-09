@@ -1,8 +1,9 @@
 import * as path from "@/constants/path";
 import { Link, Outlet } from "react-router-dom";
 
-import React from "react";
+import React, { Suspense } from "react";
 import UserInfo from "@/components/UserInfo";
+import Loading from "@/components/LoadingSprite";
 
 const NavBar: React.FC = () => {
   return (
@@ -18,7 +19,9 @@ const NavBar: React.FC = () => {
         </div>
       </nav>
       <div className="min-h-[calc(100vh-112px)] h-fit max-w-7xl w-11/12 mx-auto my-4 relative">
-        <Outlet />
+        <Suspense fallback={<Loading />}>
+          <Outlet />
+        </Suspense>
       </div>
       {/* <div className="px-12 bg-neutral-3 h-12 w-full text-white flex flex-row items-center justify-center">
         <span className="text-heading-5">FOOTER</span>

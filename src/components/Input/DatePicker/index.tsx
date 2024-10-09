@@ -38,7 +38,7 @@ const DatePicker: React.FC<TPropsDatePicker> = ({
               format={format}
               className={classNames(error ? `error` : `focus hover`, className)}
               size={size}
-              onChange={(date, dateString) => {
+              onChange={(dateString) => {
                 field.onChange(dateString ? dateString : null);
               }}
               disabledDate={disabledDate}
