@@ -1,7 +1,8 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import ProtectAuthRoute from "@/wrappers/ProtectAuthRoute";
-import React from "react";
+import React, { Suspense } from "react";
 import NavBar from "@/layouts/Navbar/index";
+import Loading from "@/components/LoadingSprite";
 
 const LogIn = React.lazy(() => import("@/pages/auth/login"));
 const SignUp = React.lazy(() => import("@/pages/auth/sign-up"));
@@ -28,7 +29,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: "share",
-            element: <ShareVideoModal />,
+            element: (
+              <Suspense fallback={<Loading />}>
+                <ShareVideoModal />
+              </Suspense>
+            ),
           },
         ],
       },
