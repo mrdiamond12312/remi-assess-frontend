@@ -7,6 +7,7 @@ import { Button, Divider, Flex, Spin } from "antd/lib";
 import React, { useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import { Helmet } from "react-helmet";
 
 const VideosFeed: React.FC = () => {
   const { data, isFetching, isFetchingNextPage, fetchNextPage, hasNextPage } =
@@ -22,6 +23,9 @@ const VideosFeed: React.FC = () => {
 
   return (
     <Flex className="flex-col gap-2 max-w-5xl m-auto">
+      <Helmet>
+        <title>Videos Feed | Test Assessment</title>
+      </Helmet>
       {data?.pages.map((page) =>
         page.data.map((video) => (
           <Link
