@@ -1,18 +1,25 @@
-# ViteJS TypeScript BoilerPlate
+# Funny Movies - Remitano Assessment Test
+This is the Front-end Repository for this assessment test UI, where user can:
+- Sign Up / SignIn / Logout
+- Share a Video (through valid Youtube Link)
+
 ## Packages:
 | Framework | Description |
 | --- | --- |
-| Material UI | Google basic Components |
+| antd | Ant Design Component|
+| umi-request | AntD request fetcher and interceptor |
 | redux-toolkit | Global state Management |
 | redux-persist | Persist in local storage if needed |
 | react-helmet | Help with SEO and head title |
 | react-router-dom | Help with Navigation |
-| react-google-recaptcha (v2 & v3) | Google ReCaptcha Implementatioon |
 | classNames | className state management, compatible with tailwind |
 | urlcat | conventional for API Path/URL replacement |
 | tailwind & less | tailwind and less with preprocessor config |
 | eslint | tracking code and convention |
 | husky & commitlint | linting towards git commit messages |
+| storybook | StorybookJS Components Testing |
+| cypress | Cypress E2E Testing |
+
 
 ## How to run:
 - Install Dependencies
@@ -33,7 +40,33 @@ npm run prepare
 npm run dev
 ```
 
-- Navigate to `http://localhost:3000`
+- Navigate to `http://localhost:8000`
+
+## Run tests:
+### StorybookJS:
+StorybookJS provides developers with an interacting UI to showcase the component / widgets.
+This command will navigate to storybook local site when done, from which you can choose and test those components.
+```
+npm run storybook
+```
+You can run all tests with this commands (storybook needs to be running beforehand)
+```
+npm run storybook:test
+```
+
+### Cypress:
+Cypress provides developers with an UI to run testcases, helps tracking running testcase and debugging.
+This command will open Cypress UI, from which you can choose E2E testing to show all test, choose a test suite and run them.
+```
+npm run cypress:open
+```
+To run all test suites in headless mode, you can use the following command (no need cypress:open to be executed beforehand)
+```
+npm run cypress:run
+```
+
+## Environment:
+Use the provided .env from this repo
 
 ## Folder Structure
 
@@ -55,7 +88,7 @@ npm run dev
 │   ├── hooks (custom hook handle common logic (not related to one component))
 |   |   ├── use*.ts
 │   ├── pages
-|   |   |   ├── PageName (folder contain page source code)
+|   |   |   ├── page-name (folder contain page source code)
 |   |   |   |   ├── components (Container all components use in specific page)
 |   |   |   |   |   ├── ComponentName
 |   |   |   |   |   |   ├── hooks/useComponentName.ts (Custom hook to handle logic for component (may not can be reuse))
@@ -68,6 +101,8 @@ npm run dev
 │   ├── styles
 |   |   ├── globals.less (Declare global css here)
 │   ├── utils (Define commonly used Logic here)
+|   |   ├── *.ts
+|   ├── wrappers (Define route protecting logics and storage)
 |   |   ├── *.ts
 ├── public (image, logo, fav.ico)
 ├── package.json
