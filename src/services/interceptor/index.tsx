@@ -45,6 +45,13 @@ const errorHandler = async (err: ResponseError) => {
         },
       });
     }
+
+    if (statusCode === 404) {
+      notification.error({
+        description: message,
+        message: "404 - Not found",
+      })
+    }
     return Promise.reject({ statusCode, error, message });
   }
 };
